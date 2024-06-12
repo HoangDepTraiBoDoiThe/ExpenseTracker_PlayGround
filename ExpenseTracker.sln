@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker", "ExpenseTracker.csproj", "{52502543-4F62-471B-9D54-3C81847E2EB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52502543-4F62-471B-9D54-3C81847E2EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52502543-4F62-471B-9D54-3C81847E2EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52502543-4F62-471B-9D54-3C81847E2EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52502543-4F62-471B-9D54-3C81847E2EB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
