@@ -10,7 +10,7 @@
             <form asp-action="CreateOrEdit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" name="CategoryId" value="@Model.CategoryId"/>
-                <div class="form-group mb-3">
+                <div class="form-group">
                     <div class='e-btn-group custom-rbt-group'>
                         <input type="radio" id="type_expense" name="Type" value="Expense" checked="@Model.Type == Expense"/>
                         <label class="e-btn" for="type_expense">Expense</label>
@@ -24,12 +24,11 @@
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Icon" class="control-label"></label>
-                    <input asp-for="Icon" class="form-control"/>
+                    <ejs-textbox id="icon" placeholder="Icon" ejs-for="Icon"></ejs-textbox>
                     <span asp-validation-for="Icon" class="text-danger"></span>
                 </div>
-                <div class="form-group my-3">
-                    <ejs-button id="submit" type="submit" cssClass="e-primary" content="Button"></ejs-button>
+                <div class="form-group d-flex flex-column">
+                    <ejs-button id="submit" type="submit" cssClass="e-success" content="Add"></ejs-button>
                 </div>
             </form>
         </div>

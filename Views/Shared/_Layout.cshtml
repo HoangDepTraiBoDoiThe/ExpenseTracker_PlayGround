@@ -40,10 +40,16 @@
         <div class="col-md-10">
             <main role="main" class="pb-3 ">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <div class="flex-column d-flex mb-3">
-                            <div class="d-flex mb-1">
+                            <div class="d-flex justify-content-between mb-1">
                                 <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                @if (ViewData["PageActionText"] != null)
+                                {
+                                    <a class="btn btn-success" href="@ViewData["PageActionUrl"]" style="color: white">
+                                        @ViewData["PageActionText"]
+                                    </a>
+                                }
                             </div>
                             <ejs-breadcrumb id="breadCrumb" separatorTemplate="@Html.Raw("<span><i class=\"fa-thin fa-greater-than\"></i></span>")"></ejs-breadcrumb>
                         </div>

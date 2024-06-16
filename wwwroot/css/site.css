@@ -97,3 +97,7 @@ body {
   border-radius: 1rem;
   background-color: #1a222b;
 }
+
+.form-group {
+  margin: 20px 0 20px 0;
+}
