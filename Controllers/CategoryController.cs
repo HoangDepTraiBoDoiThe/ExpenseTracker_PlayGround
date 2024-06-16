@@ -24,7 +24,7 @@ namespace ExpenseTracker.Controllers
             return View(await _context.Categories.ToListAsync());
         }
 
-        // GET: Category/Create
+        // GET: Category/CreateOrEdit
         public async Task<IActionResult> CreateOrEdit(int id = 0)
         {
             if (id == 0) return View(new Category());
