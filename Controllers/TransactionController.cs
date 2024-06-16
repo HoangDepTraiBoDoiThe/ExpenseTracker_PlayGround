@@ -41,7 +41,7 @@ namespace ExpenseTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateOrEdit([Bind("TransactionId,CategoryId,Note,Date")] Transaction transaction)
+        public async Task<IActionResult> CreateOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
 
             if (ModelState.IsValid)
@@ -70,25 +70,6 @@ namespace ExpenseTracker.Controllers
             return View(transaction);
         }
 
-        // GET: Transaction/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transaction = await _context.Transactions
-                .Include(t => t.Category)
-                .FirstOrDefaultAsync(m => m.TransactionId == id);
-            if (transaction == null)
-            {
-                return NotFound();
-            }
-
-            return View(transaction);
-        }
-
         // POST: Transaction/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -114,6 +95,7 @@ namespace ExpenseTracker.Controllers
         {
             var categoryCollection = _context.Categories.ToList();
             Category defaultCategory = new Category();
+            defaultCategory.Title = "Select category";
             categoryCollection.Insert(0, defaultCategory);
             ViewBag.categories = categoryCollection;
         } 

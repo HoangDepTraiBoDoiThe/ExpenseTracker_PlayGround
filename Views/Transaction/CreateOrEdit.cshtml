@@ -1,39 +1,39 @@
 @model ExpenseTracker.Models.Transaction
 
 @{
-    ViewData["Title"] = "CreateOrEdit";
+    ViewData["PageTitle"] = Model.TransactionId == 0 ? "Create a new transaction" : "Edit transaction";
 }
-
-<h1>CreateOrEdit</h1>
-
-<h4>Transaction</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateOrEdit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label"></label>
-                <input asp-for="Note" class="form-control" />
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="CreateOrEdit" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="col-md-8">
+        <div class="widget p-4">
+            <form asp-action="CreateOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <ejs-dropdownlist id="ddlCategory" ejs-for="CategoryId" dataSource="@ViewBag.categories" placeholder="Category" floatLabelType="Always" filterType="Contains" allowFiltering="true">
+                        <e-dropdownlist-fields value="CategoryId" text="TitleWithIcon" ></e-dropdownlist-fields>
+                    </ejs-dropdownlist>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <ejs-numerictextbox id="amount" placeholder="Amount" showSpinButton="false" floatLabelType="Always" min="0" format="c2" ejs-for="Amount" ></ejs-numerictextbox>
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <ejs-datetimepicker ejs-for="Date" floatLabelType="Always" placeholder="Date" format="hh:mm dd/MM/yyyy"></ejs-datetimepicker>
+                </div>
+                <div class="form-group">
+                    <ejs-textbox id="note" ejs-for="Note" placeholder="Note" floatLabelType="Always" multiline="true"></ejs-textbox>
+                </div>
+                <div class="form-group d-flex flex-column">
+                    <input type="submit" value="Submit" class="btn btn-success"/>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="col-md-4">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-shapes fa-2xl"></i>
+        </div>
+    </div>
 </div>
 
