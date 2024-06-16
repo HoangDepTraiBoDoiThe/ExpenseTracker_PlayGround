@@ -5,12 +5,13 @@ ViewData["Title"] = "Index";
 
 <div class="row">
     <div class="col-md-8">
-        <ejs-grid id="CategoriesGrid" dataSource="@Model" allowSorting="true" gridLines="None">
+        <ejs-grid id="CategoriesGrid" dataSource="@Model" allowSorting="true" allowPaging="true" gridLines="None">
+            <e-grid-pagesettings pageSize="5"></e-grid-pagesettings>
             <e-grid-columns>
-                <e-grid-column field="Title" headerText="Title" textAlign="Left" width="120"></e-grid-column>
-                <e-grid-column field="Type" headerText="Type" textAlign="Left" width="150"></e-grid-column>
-                <e-grid-column field="Icon" headerText="Icon" textAlign="Center" width="100"></e-grid-column>
-            </e-grid-columns> 
+                <e-grid-column field="TitleWithIcon" headerText="Title" textAlign="Left"></e-grid-column>
+                <e-grid-column template="#typeColumnTemplate" headerText="Type" textAlign="Left"></e-grid-column>
+                <e-grid-column template="#controlColumnTemplate" headerText="Controls" textAlign="Left"></e-grid-column>
+            </e-grid-columns>
         </ejs-grid>
     </div>
     <div class="col-md-4">
@@ -19,3 +20,17 @@ ViewData["Title"] = "Index";
         </div>
     </div>
 </div>
+
+<script id="typeColumnTemplate" type="text/x-template">
+    ${if (Type == "Expense")} <span class="badge bg-danger">${Type}</span>
+    ${else} <span class="badge bg-success">${Type}</span>
+    ${/if}
+</script>
+
+<script id="controlColumnTemplate" type="text/x-template">
+    <div class="d-flex align-items-start">
+        <a class="no-a-decoration btn btn-sm" href="/category/CreateOrEdit/${CategoryId}">
+            <i class="fa-solid fa-pencil"></i>
+        </a>
+    </div>
+</script>

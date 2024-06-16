@@ -57,6 +57,16 @@ body {
   padding: 0px 10px;
 }
 
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.no-a-decoration, .no-a-decoration:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .e-btn-group.custom-rbt-group {
   width: 100%;
 }

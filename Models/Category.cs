@@ -18,4 +18,6 @@ public class Category
     [Column(TypeName = "nvarchar(50)")]
     public String Type { get; set; } = "Expense";
 
+    [NotMapped]
+    public String? TitleWithIcon => this.Icon + " " + this.Title;
 }
