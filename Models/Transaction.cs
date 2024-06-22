@@ -7,8 +7,8 @@ public class Transaction
 {
     [Key]
     public int TransactionId { get; set; }
-    public int CategoryId { get; set; }
     [Required(ErrorMessage = "Please select a category")]
+    public int CategoryId { get; set; }
     public Category? Category { get; set; }
     [Range(1, int.MaxValue, ErrorMessage = "Amount cant be 0")]
     public int Amount { get; set; }
