@@ -4,38 +4,36 @@
 }
 
 <div class="row mb-4">
-    <div class="d-flex flex-row gap-5">
-        <div class="col-md-4">
-            <div class="d-flex flex-row widget summary income">
-                <div class="p-5 justify-content-center flex-column">
-                    <i class="fa-solid fa-dollar-sign fa-2xl"></i>
-                </div>
-                <div class="d-flex flex-column py-3 m-auto">
-                    <span class="lead ">Income</span>
-                    <h1 class="display-6 fw-bold">@ViewBag.TotalIncome</h1>
-                </div>
+    <div class="col-md-4">
+        <div class="d-flex flex-row widget summary income">
+            <div class="p-5 justify-content-center flex-column">
+                <i class="fa-solid fa-dollar-sign fa-2xl"></i>
+            </div>
+            <div class="d-flex flex-column py-3 m-auto">
+                <span class="lead ">Income</span>
+                <h5 class="display-6 fw-bold">@ViewBag.TotalIncome</h5>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="d-flex flex-row widget summary expense">
-                <div class="p-5 justify-content-center flex-column">
-                    <i class="fa-solid fa-dollar-sign fa-2xl"></i>
-                </div>
-                <div class="d-flex flex-column py-3 m-auto">
-                    <span class="lead">Expense</span>
-                    <h1 class="display-6 fw-bold">@ViewBag.TotalExpense</h1>
-                </div>
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex flex-row widget summary expense">
+            <div class="p-5 justify-content-center flex-column">
+                <i class="fa-solid fa-dollar-sign fa-2xl"></i>
+            </div>
+            <div class="d-flex flex-column py-3 m-auto">
+                <span class="lead">Expense</span>
+                <h5 class="display-6 fw-bold">@ViewBag.TotalExpense</h5>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="d-flex flex-row widget summary balance">
-                <div class="p-5 justify-content-center flex-column">
-                    <i class="fa-solid fa-dollar-sign fa-2xl"></i>
-                </div>
-                <div class="d-flex flex-column py-3 m-auto">
-                    <span class="lead">Balance</span>
-                    <h1 class="display-6 fw-bold">@ViewBag.Balance</h1>
-                </div>
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex flex-row widget summary balance">
+            <div class="p-5 justify-content-center flex-column">
+                <i class="fa-solid fa-dollar-sign fa-2xl"></i>
+            </div>
+            <div class="d-flex flex-column py-3 m-auto">
+                <span class="lead">Balance</span>
+                <h5 class="display-6 fw-bold">@ViewBag.Balance</h5>
             </div>
         </div>
     </div>
@@ -48,13 +46,12 @@
                 <h1>Title</h1>
             </div>
             <div>
-                <ejs-accumulationchart id="donutChart" title="Expense chart">
+                <ejs-accumulationchart id="donutChart">
                     <e-accumulationchart-tooltipsettings enable="true"></e-accumulationchart-tooltipsettings>
                     <e-accumulationchart-legendsettings visible="true">
-                        <e-accumulationchart-titlestyle color="#fff" size="1rem"></e-accumulationchart-titlestyle>
                     </e-accumulationchart-legendsettings>
                     <e-accumulation-series-collection>
-                        <e-accumulation-series dataSource="ViewBag.ExpenseChart" xName="categoryWithIcon" yName="amount"
+                        <e-accumulation-series dataSource="ViewBag.DonutChart" xName="categoryWithIcon" yName="amount"
                                                radius="100%" innerRadius="60%" legendShape="Circle">
                             <e-accumulationseries-datalabel name="formattedAmount" visible="true" position="Inside">
                             </e-accumulationseries-datalabel>
@@ -64,5 +61,54 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8"></div>
+    <div class="col-md-8">
+        <div class="widget chart">
+            <div class="p-4">
+                <h1>Title</h1>
+            </div>
+            <div>
+                <ejs-chart id="container">
+                    <e-chart-tooltipsettings shared="true" enable="true"></e-chart-tooltipsettings>
+                    <e-chart-legendsettings enableHighlight="true"></e-chart-legendsettings>
+                    <e-chart-chartarea>
+                        <e-chartarea-border width="0"></e-chartarea-border>
+                    </e-chart-chartarea>
+                    <e-chart-primaryxaxis valueType="Category" interval="1" labelIntersectAction="@Syncfusion.EJ2.Charts.LabelIntersectAction.Rotate90">
+                        <e-majorgridlines width="0"></e-majorgridlines>
+                        <e-majorticklines width="0"></e-majorticklines>
+                    </e-chart-primaryxaxis>
+                    <e-chart-primaryyaxis minimum="-1000" labelFormat="${value}">
+                        <e-linestyle width="0"></e-linestyle>
+                        <e-majorgridlines width="1" dashArray="3,5"></e-majorgridlines>
+                        <e-majorticklines width="0"></e-majorticklines>
+                    </e-chart-primaryyaxis>
+
+                    <e-series-collection>
+                        <e-series dataSource="@ViewBag.SplineChartData" xName="Day" yName="TotalIncome" width="3" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                        <e-series dataSource="@ViewBag.SplineChartData" xName="Day" yName="TotalExpense" width="3" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                    </e-series-collection>
+                </ejs-chart>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="widget p-4">
+            <div class="mb-3">
+                <h5>Recent transactions</h5>
+            </div>
+            <ejs-grid id="Grid" dataSource="@ViewBag.GridChart" allowSorting="true" allowPaging="true" gridLines="None">
+                <e-grid-pagesettings pageSize="7"></e-grid-pagesettings>
+                <e-grid-columns>
+                    <e-grid-column field="CategoryWithIcon" headerText="Category"></e-grid-column>
+                    <e-grid-column width="100px" field="FormatedAmount" headerText="Amount"></e-grid-column>
+                    <e-grid-column field="Date" headerText="Date"></e-grid-column>
+                </e-grid-columns>
+            </ejs-grid>
+        </div>
+
+    </div>
+    <div class="col-md-6"></div>
 </div>

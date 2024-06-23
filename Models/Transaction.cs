@@ -21,4 +21,6 @@ public class Transaction
     
     [NotMapped]
     public string? FormatedAmount => ((Category == null || Category.Type == "Expense") ? "- " : "+ ") + Amount.ToString("C0", new System.Globalization.CultureInfo("es-US"));
+
+    [NotMapped] public string? TransactionType => Category?.Type;
 }
